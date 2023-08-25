@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('jk');
             $table->string('no_telp');
+            $table->string('dokumen');
             $table->string('gambar');
             $table->timestamps();
         });
