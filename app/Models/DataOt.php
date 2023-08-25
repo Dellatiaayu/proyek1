@@ -13,7 +13,7 @@ class DataOt extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'nik','nama','ttl','alamat','jk','no_telp','gambar'
+        'nik','nama','ttl','alamat','jk','no_telp','dokumen','gambar'
     ];
 
     public function pendataan()

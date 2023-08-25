@@ -42,6 +42,11 @@
                     </div>
 
                     <div class="form-group">
+                        <Label>Surat Pengantar dari Polsek/Polres/Satpol PP :</Label>
+                        <input type="file" class="form-control" name="dokumen">
+                    </div>
+
+                    <div class="form-group">
                         <Label>Foto :</Label>
                         <input type="file" class="form-control" name="gambar">
                     </div>

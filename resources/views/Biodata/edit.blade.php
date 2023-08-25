@@ -45,6 +45,12 @@
                         </div>
 
                         <div class="form-group">
+                            <Label>Surat Pengantar dari Polsek/Polres/Satpol PP :</Label>
+                            <a href="{{ url('dokumen/' . $dataot->dokumen) }}" alt="dokumen" style="width: 200px;">
+                            <input type="file" class="form-control" name="dokumen">
+                        </div>
+
+                        <div class="form-group">
                             <Label>Foto :</Label>
                             <img src="{{ url('data_file/' . $dataot->gambar) }}" alt="Foto"
                                 style="width: 200px;">

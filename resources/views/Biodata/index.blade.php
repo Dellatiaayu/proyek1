@@ -40,6 +40,7 @@
                                 <th>Alamat</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Nomor Telpon</th>
+                                <th>SP dari Kepolisian </th>
                                 <th>Foto</th>
                                 <th>Action</th>
                             </tr>
@@ -54,6 +55,13 @@
                                     <td>{{ $biodata->alamat }}</td>
                                     <td>{{ $biodata->jk }}</td>
                                     <td>{{ $biodata->no_telp }}</td>
+                                    <td>
+                                        @if ($biodata->dokumen)
+                                            <a href="{{ url('/dokumen/' . $biodata->dokumen) }}" target="_blank">Lihat Dokumen</a>
+                                        @else
+                                            Tidak ada dokumen
+                                        @endif
+                                    </td>
                                     <td><img src="{{ url('/data_file/' . $biodata->gambar) }}" width="150px" height="150px">
                                     </td>
                                     <td>

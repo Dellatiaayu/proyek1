@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Laporan;
 use Illuminate\Http\Request;
 use App\Models\DataOt;
 
@@ -35,6 +34,11 @@ class DataOtController extends Controller
             'no_telp' => 'required',
         ]);
 
+        $dokumenFile = $request->file('dokumen');
+        $namaDokumen = time() . "_" . $dokumenFile->getClientOriginalName();
+        $tujuanUploadDokumen = 'dokumen';
+        $dokumenFile->move($tujuanUploadDokumen, $namaDokumen);
+
         $file = $request->file('gambar');
         $nama_file = time() . "_" . $file->getClientOriginalName();
         $tujuan_upload = 'data_file';
@@ -47,6 +51,7 @@ class DataOtController extends Controller
             'alamat' => $request->alamat,
             'jk' => $request->jk,
             'no_telp' => $request->no_telp,
+            'dokumen' => $namaDokumen,
             'gambar' => $nama_file,
 
         ]);
@@ -70,6 +75,7 @@ class DataOtController extends Controller
             'alamat' => 'required',
             'jk' => 'required',
             'no_telp' => 'required',
+            'dokumen' => 'nullable|mimes:doc,docx,pdf',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
@@ -102,6 +108,36 @@ class DataOtController extends Controller
                 'no_telp' => $request->no_telp,
             ]);
         }
+
+        // Check if document is uploaded
+    if ($request->hasFile('dokumen')) {
+        $dokumenFile = $request->file('dokumen');
+        $namaDokumen = time() . "_" . $dokumenFile->getClientOriginalName();
+        $tujuanUploadDokumen = 'dokumen';
+        $dokumenFile->move($tujuanUploadDokumen, $namaDokumen);
+
+        // Update post with new document
+        $dataot->update([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'ttl' => $request->ttl,
+            'alamat' => $request->alamat,
+            'jk' => $request->jk,
+            'no_telp' => $request->no_telp,
+            'dokumen' => $namaDokumen,
+        ]);
+    } else {
+        // Update post without changing the document
+        $dataot->update([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'ttl' => $request->ttl,
+            'alamat' => $request->alamat,
+            'jk' => $request->jk,
+            'no_telp' => $request->no_telp,
+        ]);
+    }
+
         return redirect()->route('dataot.index')->with('success', 'biodata berhasil diperbarui.');
     }
 
